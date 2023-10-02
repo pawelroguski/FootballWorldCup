@@ -69,7 +69,7 @@ class Game implements GameInterface
      */
     public function setAwayTeamScore(int $awayTeamScore): void
     {
-        $this->_awayTeamScore = $awayTeamScore;
+        $this->awayTeamScore = $awayTeamScore;
     }
 
     /**
@@ -119,6 +119,6 @@ class Game implements GameInterface
      */
     public function getTotalScore(): int
     {
-        return $this->homeTeamScore + $this->_awayTeamScore;
+        return $this->homeTeamScore + $this->awayTeamScore;
     }
 }
