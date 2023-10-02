@@ -10,6 +10,10 @@
       "email": "kontakt@pawelroguski.pl"
     }
   ],
+  "scripts": {
+    "test": "phpunit",
+    "cs": "phpcs --standard=PSR12 src/ tests/"
+  },
   "autoload": {
     "psr-4": {
       "FootballWorldCup\\": "src/FootballWorldCup/"
