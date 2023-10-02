@@ -5,7 +5,7 @@
 FootballWorldCup is a PHP project that helps in managing and keeping track of football games, scores, and teams during a World Cup event. The project includes a set of classes and interfaces that encapsulate the various entities and actions related to football games.
 
 ### Requirements
-PHP 8 or higher
+PHP 8.0 or higher
 
 ### Project Structure
 The project is structured as follows:
