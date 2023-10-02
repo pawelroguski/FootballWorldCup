@@ -2,7 +2,10 @@
 
 namespace FootballWorldCup\Tests;
 
+use FootballWorldCup\Game;
+use FootballWorldCup\GameManager;
 use InvalidArgumentException;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use TypeError;
 
@@ -26,6 +29,9 @@ class GameManagerTest extends TestCase
         $this->assertEquals(3, $game->getAwayTeamScore());
     }
 
+    /**
+     * @dataProvider provideNegativeValuesForScore
+     */
     public function test_should_throw_error_when_negative_number_passed_into_score(
         int $homeTeamScore,
         int $awayTeamScore,
@@ -38,6 +44,9 @@ class GameManagerTest extends TestCase
         $manager->updateScore($game, $homeTeamScore, $awayTeamScore);
     }
 
+    /**
+     * @dataProvider provideNullValuesForTeamNames
+     */
     public function test_should_throw_error_after_attempt_create_game_with_null_or_empty_team_value(
         ?string $homeTeamName,
         ?string $awayTeamName,
