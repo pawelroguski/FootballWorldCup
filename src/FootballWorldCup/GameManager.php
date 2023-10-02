@@ -1,4 +1,5 @@
 <?php
+
 namespace FootballWorldCup;
 
 use InvalidArgumentException;
@@ -31,7 +32,7 @@ class GameManager implements GameManagerInterface
      */
     public function startGame(GameInterface $game): void
     {
-        if ($this->_returnActiveGameIndexOrFalse($game) !== false) {
+        if ($this->returnActiveGameIndexOrFalse($game) !== false) {
             throw new LogicException();
         }
 
@@ -47,7 +48,7 @@ class GameManager implements GameManagerInterface
      */
     public function finishGame(GameInterface $game): void
     {
-        $index = $this->_returnActiveGameIndexOrFalse($game);
+        $index = $this->returnActiveGameIndexOrFalse($game);
         if ($index === false) {
             throw new LogicException();
         }
@@ -71,7 +72,7 @@ class GameManager implements GameManagerInterface
         if ($homeTeamScore < 0 || $awayTeamScore < 0) {
             throw new InvalidArgumentException();
         }
-        if ($this->_returnActiveGameIndexOrFalse($game) === false) {
+        if ($this->returnActiveGameIndexOrFalse($game) === false) {
             throw new LogicException();
         }
         $game->setHomeTeamScore($homeTeamScore);
@@ -95,9 +96,8 @@ class GameManager implements GameManagerInterface
      *
      * @return false|int
      */
-    private function _returnActiveGameIndexOrFalse(GameInterface $game): false|int
+    private function returnActiveGameIndexOrFalse(GameInterface $game): false|int
     {
         return array_search($game, $this->getActiveGamesCollection());
     }
 }
-

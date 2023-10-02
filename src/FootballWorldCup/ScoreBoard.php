@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FootballWorldCup;
@@ -30,12 +31,13 @@ class ScoreBoard implements ScoreBoardInterface
         }
 
         usort(
-            $activeGamesCollection, function (
-            GameInterface $a,
-            GameInterface $b
-        ) use ($activeGamesCollection) {
-            if ($a->getTotalScore() == $b->getTotalScore()) {
-                return
+            $activeGamesCollection,
+            function (
+                GameInterface $a,
+                GameInterface $b
+            ) use ($activeGamesCollection) {
+                if ($a->getTotalScore() == $b->getTotalScore()) {
+                    return
                     array_search(
                         $b,
                         $activeGamesCollection
@@ -43,9 +45,9 @@ class ScoreBoard implements ScoreBoardInterface
                         $a,
                         $activeGamesCollection
                     );
+                }
+                return $b->getTotalScore() <=> $a->getTotalScore();
             }
-            return $b->getTotalScore() <=> $a->getTotalScore();
-        }
         );
 
         foreach ($activeGamesCollection as $singleGame) {

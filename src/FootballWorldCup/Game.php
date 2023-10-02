@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FootballWorldCup;
@@ -21,28 +22,28 @@ class Game implements GameInterface
      *
      * @var int
      */
-    private int $_homeTeamScore = 0;
+    private int $homeTeamScore = 0;
 
     /**
      * Away team score value
      *
      * @var int
      */
-    private int $_awayTeamScore = 0;
+    private int $awayTeamScore = 0;
 
     /**
      * Game Class constructor
      *
-     * @param string $_homeTeamName Home team name
-     * @param string $_awayTeamName Away team name
+     * @param string $homeTeamName Home team name
+     * @param string $awayTeamName Away team name
      *
      * @throws InvalidArgumentException When one of the arguments is empty
      */
     public function __construct(
-        private readonly string $_homeTeamName,
-        private readonly string $_awayTeamName
+        private readonly string $homeTeamName,
+        private readonly string $awayTeamName
     ) {
-        if (empty($this->_homeTeamName) || empty($this->_awayTeamName)) {
+        if (empty($this->homeTeamName) || empty($this->awayTeamName)) {
             throw new InvalidArgumentException();
         }
     }
@@ -56,7 +57,7 @@ class Game implements GameInterface
      */
     public function setHomeTeamScore(int $homeTeamScore): void
     {
-        $this->_homeTeamScore = $homeTeamScore;
+        $this->homeTeamScore = $homeTeamScore;
     }
 
     /**
@@ -78,7 +79,7 @@ class Game implements GameInterface
      */
     public function getHomeTeamName(): string
     {
-        return $this->_homeTeamName;
+        return $this->homeTeamName;
     }
 
     /**
@@ -88,7 +89,7 @@ class Game implements GameInterface
      */
     public function getAwayTeamName(): string
     {
-        return $this->_awayTeamName;
+        return $this->awayTeamName;
     }
 
     /**
@@ -98,7 +99,7 @@ class Game implements GameInterface
      */
     public function getHomeTeamScore(): int
     {
-        return $this->_homeTeamScore;
+        return $this->homeTeamScore;
     }
 
     /**
@@ -108,7 +109,7 @@ class Game implements GameInterface
      */
     public function getAwayTeamScore(): int
     {
-        return $this->_awayTeamScore;
+        return $this->awayTeamScore;
     }
 
     /**
@@ -118,6 +119,6 @@ class Game implements GameInterface
      */
     public function getTotalScore(): int
     {
-        return $this->_homeTeamScore + $this->_awayTeamScore;
+        return $this->homeTeamScore + $this->_awayTeamScore;
     }
 }

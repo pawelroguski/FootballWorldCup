@@ -11,7 +11,8 @@ use TypeError;
 
 class GameManagerTest extends TestCase
 {
-    public function test_should_passed_when_game_launched_and_completed_correctly(){
+    public function test_should_passed_when_game_launched_and_completed_correctly()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -20,7 +21,8 @@ class GameManagerTest extends TestCase
         $this->assertCount(0, $manager->getActiveGamesCollection());
     }
 
-    public function test_should_pass_when_both_teams_scores_updated_properly(){
+    public function test_should_pass_when_both_teams_scores_updated_properly()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -36,7 +38,7 @@ class GameManagerTest extends TestCase
         int $homeTeamScore,
         int $awayTeamScore,
         string $expectedException
-    ){
+    ) {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -51,21 +53,23 @@ class GameManagerTest extends TestCase
         ?string $homeTeamName,
         ?string $awayTeamName,
         string $expectedException
-    ){
+    ) {
         $manager = new GameManager();
         $this->expectException($expectedException);
         $game = new Game($homeTeamName, $awayTeamName);
         $manager->startGame($game);
     }
 
-    public function test_should_throw_error_after_attempt_finish_not_started_game(){
+    public function test_should_throw_error_after_attempt_finish_not_started_game()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $this->expectException(LogicException::class);
         $manager->finishGame($game);
     }
 
-    public function test_should_throw_error_after_attempt_start_same_game_multiple_times(){
+    public function test_should_throw_error_after_attempt_start_same_game_multiple_times()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -73,7 +77,8 @@ class GameManagerTest extends TestCase
         $manager->startGame($game);
     }
 
-    public function test_should_throw_error_after_attempt_finish_same_game_multiple_times(){
+    public function test_should_throw_error_after_attempt_finish_same_game_multiple_times()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -82,7 +87,8 @@ class GameManagerTest extends TestCase
         $manager->finishGame($game);
     }
 
-    public function test_should_throw_error_after_attempt_update_score_for_finished_game(){
+    public function test_should_throw_error_after_attempt_update_score_for_finished_game()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
@@ -91,7 +97,8 @@ class GameManagerTest extends TestCase
         $manager->updateScore($game, 1, 2);
     }
 
-    public function test_should_throw_error_after_attempt_update_score_for_not_started_game(){
+    public function test_should_throw_error_after_attempt_update_score_for_not_started_game()
+    {
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $this->expectException(LogicException::class);
