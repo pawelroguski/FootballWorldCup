@@ -18,9 +18,9 @@ class GameManager implements GameManagerInterface
     /**
      * All currently started games
      *
-     * @var array
+     * @var GameInterface[]
      */
-    protected array $allGames = [];
+    protected array $activeGamesCollection = [];
 
     /**
      * Start game action
@@ -31,11 +31,11 @@ class GameManager implements GameManagerInterface
      */
     public function startGame(GameInterface $game): void
     {
-        if ($this->_returnGameIndexOrFalse($game) !== false) {
+        if ($this->_returnActiveGameIndexOrFalse($game) !== false) {
             throw new LogicException();
         }
 
-        $this->allGames[] = $game;
+        $this->activeGamesCollection[] = $game;
     }
 
     /**
@@ -47,11 +47,11 @@ class GameManager implements GameManagerInterface
      */
     public function finishGame(GameInterface $game): void
     {
-        $index = $this->_returnGameIndexOrFalse($game);
+        $index = $this->_returnActiveGameIndexOrFalse($game);
         if ($index === false) {
             throw new LogicException();
         }
-        unset($this->allGames[$index]);
+        unset($this->activeGamesCollection[$index]);
     }
 
     /**
@@ -71,7 +71,7 @@ class GameManager implements GameManagerInterface
         if ($homeTeamScore < 0 || $awayTeamScore < 0) {
             throw new InvalidArgumentException();
         }
-        if ($this->_returnGameIndexOrFalse($game) === false) {
+        if ($this->_returnActiveGameIndexOrFalse($game) === false) {
             throw new LogicException();
         }
         $game->setHomeTeamScore($homeTeamScore);
@@ -81,11 +81,11 @@ class GameManager implements GameManagerInterface
     /**
      * Returns all currently started games
      *
-     * @return array
+     * @return GameInterface[]
      */
-    public function getAllGames(): array
+    public function getActiveGamesCollection(): array
     {
-        return $this->allGames;
+        return $this->activeGamesCollection;
     }
 
     /**
@@ -95,9 +95,9 @@ class GameManager implements GameManagerInterface
      *
      * @return false|int
      */
-    private function _returnGameIndexOrFalse(GameInterface $game): false|int
+    private function _returnActiveGameIndexOrFalse(GameInterface $game): false|int
     {
-        return array_search($game, $this->getAllGames());
+        return array_search($game, $this->getActiveGamesCollection());
     }
 }
 

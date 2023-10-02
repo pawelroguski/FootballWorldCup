@@ -17,9 +17,9 @@ interface ScoreBoardInterface
     /**
      * Returns summary with scores of all currently started games
      *
-     * @param GameInterface[] $allGames Array of currently started games
+     * @param GameInterface[] $activeGamesCollection Array of currently started games
      *
      * @return string|null
      */
-    public function getSummary(array $allGames): ?string;
+    public function getSummary(array $activeGamesCollection): ?string;
 }

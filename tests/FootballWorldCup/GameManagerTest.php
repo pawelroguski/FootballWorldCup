@@ -15,9 +15,9 @@ class GameManagerTest extends TestCase
         $manager = new GameManager();
         $game = new Game('TeamA', 'TeamB');
         $manager->startGame($game);
-        $this->assertCount(1, $manager->getAllGames());
+        $this->assertCount(1, $manager->getActiveGamesCollection());
         $manager->finishGame($game);
-        $this->assertCount(0, $manager->getAllGames());
+        $this->assertCount(0, $manager->getActiveGamesCollection());
     }
 
     public function test_should_pass_when_both_teams_scores_updated_properly(){

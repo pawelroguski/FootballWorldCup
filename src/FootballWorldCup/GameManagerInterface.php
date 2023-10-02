@@ -49,7 +49,7 @@ interface GameManagerInterface
     /**
      * Returns all currently started games
      *
-     * @return array
+     * @return GameInterface[]
      */
-    public function getAllGames(): array;
+    public function getActiveGamesCollection(): array;
 }

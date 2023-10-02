@@ -17,29 +17,38 @@ class ScoreBoard implements ScoreBoardInterface
     /**
      * Returns summary of scores from all currently started games
      *
-     * @param GameInterface[] $allGames All games actually started
+     * @param GameInterface[] $activeGamesCollection All games actually started
      *
      * @return string|null
      */
-    public function getSummary(array $allGames): ?string
+    public function getSummary(array $activeGamesCollection): ?string
     {
         $summary = [];
 
-        if (!count($allGames)) {
+        if (!count($activeGamesCollection)) {
             return null;
         }
 
         usort(
-            $allGames, function (GameInterface $a, GameInterface $b) use ($allGames) {
+            $activeGamesCollection, function (
+            GameInterface $a,
+            GameInterface $b
+        ) use ($activeGamesCollection) {
             if ($a->getTotalScore() == $b->getTotalScore()) {
                 return
-                    array_search($b, $allGames) <=> array_search($a, $allGames);
+                    array_search(
+                        $b,
+                        $activeGamesCollection
+                    ) <=> array_search(
+                        $a,
+                        $activeGamesCollection
+                    );
             }
             return $b->getTotalScore() <=> $a->getTotalScore();
         }
         );
 
-        foreach ($allGames as $singleGame) {
+        foreach ($activeGamesCollection as $singleGame) {
             $homeTeam = $singleGame->getHomeTeamName();
             $awayTeam = $singleGame->getAwayTeamName();
             $homeTeamScore = $singleGame->getHomeTeamScore();
