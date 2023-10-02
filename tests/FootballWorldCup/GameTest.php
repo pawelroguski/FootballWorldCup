@@ -2,6 +2,7 @@
 
 namespace FootballWorldCup\Tests;
 
+use FootballWorldCup\Game;
 use PHPUnit\Framework\TestCase;
 
 class GameTest extends TestCase
