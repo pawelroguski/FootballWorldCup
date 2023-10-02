@@ -3,6 +3,10 @@
 namespace FootballWorldCup\Tests;
 
 use PHPUnit\Framework\TestCase;
+use FootballWorldCup\ScoreBoard;
+use TypeError;
+use FootballWorldCup\GameManager;
+use FootballWorldCup\Game;
 
 class ScoreBoardTest extends TestCase
 {
